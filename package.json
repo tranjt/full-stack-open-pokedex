@@ -10,7 +10,7 @@
     "eslint": "eslint './**/*.{js,jsx}'",
     "lint": "eslint ./src/**/*.{js,jsx} App.js --no-error-on-unmatched-pattern",
     "build": "webpack --mode production",
-    "test:e2e": "cypress open"
+    "e2e": "cypress open"
   },
   "repository": {
     "type": "git",
