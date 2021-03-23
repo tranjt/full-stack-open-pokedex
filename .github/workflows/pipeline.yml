@@ -34,3 +34,4 @@ jobs:
           heroku_email: "randfresh911@gmail.com"
           healthcheck: "https://tranjt-pokedex.herokuapp.com/health"
           checkstring: "ok"
+          rollbackonhealthcheckfailed: true
