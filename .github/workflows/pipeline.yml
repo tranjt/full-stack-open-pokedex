@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - master
-  pull_request:    
-    branches: [master]    
+  pull_request:
+    branches: [master]
     types: [opened, synchronize]
 
 jobs:
@@ -38,3 +38,11 @@ jobs:
           healthcheck: "https://tranjt-pokedex.herokuapp.com/health"
           checkstring: "ok"
           rollbackonhealthcheckfailed: true
+      - uses: actions/checkout@v2
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@1.33.0
+        if: ${{ github.event_name == 'push' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BUMP: patch
+          DRY_RUN: true
