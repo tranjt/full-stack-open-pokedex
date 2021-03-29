@@ -35,9 +35,8 @@ jobs:
         with:
           start: npm run start-prod
 
-      - uses: akhileshns/heroku-deploy@v3.12.12
-        env: COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
-        if: ${{ github.event_name == 'push' }} && ${{ !contains($COMMIT_MESSAGES, '#skip') }}
+      - uses: akhileshns/heroku-deploy@v3.12.12        
+        if: ${{ github.event_name == 'push' }}
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "tranjt-pokedex"
@@ -53,4 +52,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
           env: COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
-        if: ${{ github.event_name == 'push' }} && ${{ !contains($COMMIT_MESSAGES, '#skip') }}
+        if: ${{ github.event_name == 'push' }}
