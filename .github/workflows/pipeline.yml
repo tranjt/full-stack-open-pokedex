@@ -61,7 +61,7 @@ jobs:
           fields: commit,author,took
           custom_payload: |
             {
-              color: 'success',
+              color: 'good',
               attachments: [{               
                 text: `A new version deployed to https://tranjt-pokedex.herokuapp.com/ (${process.env.AS_COMMIT}) by ${process.env.AS_AUTHOR} build took ${process.env.AS_TOOK}`,
               }]
@@ -69,12 +69,16 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
        
-      - name: Notification success
+      - name: Notification failure
         if: ${{ failure() }}
         uses: 8398a7/action-slack@v3        
         with:
           status: custom
-          fields: repo,message,commit,author,took
+          fields: repo,message,commit,author,took,
+           custom_payload: |
+            {
+              color: 'danger',             
+            }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       
